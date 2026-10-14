@@ -1,0 +1,17 @@
+{
+  "seed": 42,
+  "total_unique_articles": 741,
+  "train_docs": 518,
+  "val_docs": 111,
+  "test_docs": 112,
+  "train_spans": 34505,
+  "val_spans": 7046,
+  "test_spans": 6750,
+  "label_schema": {
+    "PERSON": "Named individual (e.g., 'Dato Khairussaleh', 'Elon Musk')",
+    "ORG": "Organization, company, institution (e.g., 'Maybank', 'CIMB Group')",
+    "GPE": "Geopolitical entity: country, state, city (e.g., 'Malaysia', 'Kuala Lumpur')",
+    "DATE": "Dates, time references (e.g., 'September 2026', 'Q3 2026')",
+    "EVENT": "Named events (e.g., 'Hari Raya', 'Budget 2027')"
+  }
+}

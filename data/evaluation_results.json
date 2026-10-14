@@ -1,0 +1,272 @@
+{
+  "seed": 42,
+  "matching_scheme": "exact-span matching (start, end, label must all match)",
+  "test_set_isolation": "Test set was NOT used during annotation review, label mapping, hyperparameter tuning, or model selection. It was evaluated only once after the best model was selected on the validation set.",
+  "training_config": {
+    "duration_seconds": 1192.1,
+    "best_epoch": 29,
+    "total_epochs": 30,
+    "best_val_f1": 0.696,
+    "learning_rate": 0.001,
+    "dropout": 0.35,
+    "batch_size": 8,
+    "n_training_examples": 517
+  },
+  "baseline": {
+    "model": "en_core_web_sm (spaCy 3.8.x pretrained, no adaptation)",
+    "validation": {
+      "PERSON": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 2179,
+        "fp": 0,
+        "fn": 0,
+        "support": 2179
+      },
+      "ORG": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 2449,
+        "fp": 0,
+        "fn": 0,
+        "support": 2449
+      },
+      "GPE": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 1310,
+        "fp": 0,
+        "fn": 0,
+        "support": 1310
+      },
+      "DATE": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 1089,
+        "fp": 0,
+        "fn": 0,
+        "support": 1089
+      },
+      "EVENT": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 19,
+        "fp": 0,
+        "fn": 0,
+        "support": 19
+      },
+      "OVERALL": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 7046,
+        "fp": 0,
+        "fn": 0,
+        "support": 7046
+      }
+    },
+    "test": {
+      "PERSON": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 1746,
+        "fp": 0,
+        "fn": 0,
+        "support": 1746
+      },
+      "ORG": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 2515,
+        "fp": 0,
+        "fn": 0,
+        "support": 2515
+      },
+      "GPE": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 1143,
+        "fp": 0,
+        "fn": 0,
+        "support": 1143
+      },
+      "DATE": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 1322,
+        "fp": 0,
+        "fn": 0,
+        "support": 1322
+      },
+      "EVENT": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 24,
+        "fp": 0,
+        "fn": 0,
+        "support": 24
+      },
+      "OVERALL": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "tp": 6750,
+        "fp": 0,
+        "fn": 0,
+        "support": 6750
+      }
+    }
+  },
+  "trained": {
+    "model": "spaCy blank:en fine-tuned NER",
+    "model_dir": "D:\\TUGAS SEMESTER 5\\DATA SCIENCE\\UTS-Article-Named-Entity-Recognition-Service\\models\\ner_finetuned",
+    "validation": {
+      "PERSON": {
+        "precision": 0.5966,
+        "recall": 0.5484,
+        "f1": 0.5715,
+        "tp": 1195,
+        "fp": 808,
+        "fn": 984,
+        "support": 2179
+      },
+      "ORG": {
+        "precision": 0.6986,
+        "recall": 0.7052,
+        "f1": 0.7019,
+        "tp": 1727,
+        "fp": 745,
+        "fn": 722,
+        "support": 2449
+      },
+      "GPE": {
+        "precision": 0.7537,
+        "recall": 0.7382,
+        "f1": 0.7459,
+        "tp": 967,
+        "fp": 316,
+        "fn": 343,
+        "support": 1310
+      },
+      "DATE": {
+        "precision": 0.8601,
+        "recall": 0.8696,
+        "f1": 0.8648,
+        "tp": 947,
+        "fp": 154,
+        "fn": 142,
+        "support": 1089
+      },
+      "EVENT": {
+        "precision": 0.6667,
+        "recall": 0.3158,
+        "f1": 0.4286,
+        "tp": 6,
+        "fp": 3,
+        "fn": 13,
+        "support": 19
+      },
+      "OVERALL": {
+        "precision": 0.705,
+        "recall": 0.6872,
+        "f1": 0.696,
+        "tp": 4842,
+        "fp": 2026,
+        "fn": 2204,
+        "support": 7046
+      }
+    },
+    "test": {
+      "PERSON": {
+        "precision": 0.6777,
+        "recall": 0.5962,
+        "f1": 0.6344,
+        "tp": 1041,
+        "fp": 495,
+        "fn": 705,
+        "support": 1746
+      },
+      "ORG": {
+        "precision": 0.7134,
+        "recall": 0.7392,
+        "f1": 0.726,
+        "tp": 1859,
+        "fp": 747,
+        "fn": 656,
+        "support": 2515
+      },
+      "GPE": {
+        "precision": 0.7624,
+        "recall": 0.8058,
+        "f1": 0.7835,
+        "tp": 921,
+        "fp": 287,
+        "fn": 222,
+        "support": 1143
+      },
+      "DATE": {
+        "precision": 0.8457,
+        "recall": 0.8623,
+        "f1": 0.8539,
+        "tp": 1140,
+        "fp": 208,
+        "fn": 182,
+        "support": 1322
+      },
+      "EVENT": {
+        "precision": 0.9167,
+        "recall": 0.4583,
+        "f1": 0.6111,
+        "tp": 11,
+        "fp": 1,
+        "fn": 13,
+        "support": 24
+      },
+      "OVERALL": {
+        "precision": 0.741,
+        "recall": 0.7366,
+        "f1": 0.7388,
+        "tp": 4972,
+        "fp": 1738,
+        "fn": 1778,
+        "support": 6750
+      }
+    }
+  },
+  "error_analysis": [
+    {
+      "error_num": 1,
+      "type": "FALSE_NEGATIVE",
+      "text": "the Convention on the Elimination of All Forms of Discrimination Against Women",
+      "predicted": null,
+      "gold": "ORG",
+      "context": "... Cultural Rights (ICESCR) and the Convention on the Elimination of All Forms of Discrimination Against Women, one fact stands unchallenged..."
+    },
+    {
+      "error_num": 2,
+      "type": "FALSE_POSITIVE",
+      "text": "the International Covenant",
+      "predicted": "ORG",
+      "gold": null,
+      "context": "...eclaration of Human Rights to the International Covenant on Economic, Social and Cultu..."
+    },
+    {
+      "error_num": 3,
+      "type": "FALSE_NEGATIVE",
+      "text": "Ahmad Zahri bin Mirza Abdul Hamid v AIMS Cyberjaya Sdn Bhd",
+      "predicted": null,
+      "gold": "PERSON",
+      "context": "...he courts have noted this. In Ahmad Zahri bin Mirza Abdul Hamid v AIMS Cyberjaya Sdn Bhd, the Federal Court took cogni..."
+    }
+  ]
+}
