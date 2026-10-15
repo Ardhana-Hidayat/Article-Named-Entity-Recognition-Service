@@ -334,3 +334,9 @@ class TestUIEndpoint:
         assert response.status_code == 200
         assert "text/html" in response.headers.get("content-type", "")
         assert "NER" in response.text or "ner" in response.text.lower()
+
+
+if __name__ == "__main__":
+    import pytest
+    sys.exit(pytest.main(["-v", __file__]))
+
