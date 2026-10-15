@@ -10,33 +10,33 @@ Layanan deteksi dan ekstraksi entitas bernama (*Named-Entity Recognition*) berba
 
 ```mermaid
 flowchart TD
-    subgraph Data_Pipeline [Data Preparation & Model Training]
-        CSV[Raw CSV Samples <br/> use_cases/pnm_study_case/sample/] --> Profiler[Data Profiler <br/> src/data_profiling.py]
-        Profiler --> Deduplication[Exact & Near Deduplication <br/> Article Grouping]
-        Deduplication --> PreAnnotator[Weak Supervision & Span Alignment <br/> src/annotation_pipeline.py]
-        PreAnnotator --> Splitter[Deterministic Split 70/15/15 <br/> Train 518 | Val 111 | Test 112]
-        Splitter --> TrainSet[Training Set: 34,505 spans]
-        Splitter --> ValSet[Validation Set: 7,046 spans]
-        Splitter --> TestSet[Held-out Test Set: 6,750 spans]
-        TrainSet --> Trainer[NER Training Pipeline <br/> Transition-based Parser, CNN Embeddings]
+    subgraph Data_Pipeline ["Data Preparation & Model Training"]
+        CSV["Raw CSV Samples<br/>use_cases/pnm_study_case/sample/"] --> Profiler["Data Profiler<br/>src/data_profiling.py"]
+        Profiler --> Deduplication["Exact & Near Deduplication<br/>Article Grouping"]
+        Deduplication --> PreAnnotator["Weak Supervision & Span Alignment<br/>src/annotation_pipeline.py"]
+        PreAnnotator --> Splitter["Deterministic Split 70/15/15<br/>Train: 518, Val: 111, Test: 112"]
+        Splitter --> TrainSet["Training Set: 34,505 spans"]
+        Splitter --> ValSet["Validation Set: 7,046 spans"]
+        Splitter --> TestSet["Held-out Test Set: 6,750 spans"]
+        TrainSet --> Trainer["NER Training Pipeline<br/>Transition-based Parser, CNN Embeddings"]
         ValSet --> Trainer
-        Trainer --> BestModel[Best Model Checkpoint <br/> models/ner_finetuned/]
+        Trainer --> BestModel["Best Model Checkpoint<br/>models/ner_finetuned/"]
     end
 
-    subgraph Service_Runtime [Inference & Serving]
-        ClientReq[Client / Browser Request] --> FastAPI[FastAPI Server <br/> POST /extract-entities]
-        FastAPI --> Validator[Request Validation Layer <br/> Type, Empty, Length Guard]
-        Validator --> Combiner[Consistent Text Combiner <br/> title + '\n\n' + body]
-        Combiner --> NERModel[spaCy Fine-tuned Pipeline <br/> models/ner_finetuned]
-        NERModel --> OffsetVerifier[Exact-span Character Offset Slicing]
-        OffsetVerifier --> JSONResp[JSON Response + Metadata]
+    subgraph Service_Runtime ["Inference & Serving"]
+        ClientReq["Client / Browser Request"] --> FastAPI["FastAPI Server<br/>POST /extract-entities"]
+        FastAPI --> Validator["Request Validation Layer<br/>Type, Empty, Length Guard"]
+        Validator --> Combiner["Consistent Text Combiner<br/>title + '\n\n' + body"]
+        Combiner --> NERModel["spaCy Fine-tuned Pipeline<br/>models/ner_finetuned"]
+        NERModel --> OffsetVerifier["Exact-span Character Offset Slicing"]
+        OffsetVerifier --> JSONResp["JSON Response + Metadata"]
         JSONResp --> ClientReq
     end
 
-    subgraph User_Interface [Interactive Web Dashboard]
-        BrowserUI[Modern Dark Glassmorphism UI <br/> GET /] --> ClientReq
-        JSONResp --> RenderTable[Entity Data Table]
-        JSONResp --> Highlighter[Visual Color-coded Text Highlighter]
+    subgraph User_Interface ["Interactive Web Dashboard"]
+        BrowserUI["Modern Dark Glassmorphism UI<br/>GET /"] --> ClientReq
+        JSONResp --> RenderTable["Entity Data Table"]
+        JSONResp --> Highlighter["Visual Color-coded Text Highlighter"]
     end
 ```
 
