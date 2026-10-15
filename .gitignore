@@ -68,4 +68,19 @@ Thumbs.db
 # Hard Constraint: Do NOT commit raw dataset CSV files
 *.csv
 dataset/
+/dataset/
+dataset/*
+dataset/**
+
+# Specific files in /dataset
+dataset/clipping-information.txt
+dataset/Maybank_Malaysia_OnlineMedia_07-Sep-2026_07-Oct-2026_-nwub4cROX.csv
+dataset/Maybank_Malaysia_OnlineMedia_07-Sep-2026_07-Oct-2026_4sxH8Dz0hr.csv
+dataset/Maybank_Malaysia_OnlineMedia_07-Sep-2026_07-Oct-2026_58yzyiBQ9U.csv
+dataset/Maybank_Malaysia_OnlineMedia_07-Sep-2026_07-Oct-2026_9xtqAsPitG.csv
+dataset/Maybank_Malaysia_OnlineMedia_07-Sep-2026_07-Oct-2026_WdjZl0bRfZ.csv
+dataset/Maybank_Malaysia_OnlineMedia_07-Sep-2026_07-Oct-2026_bRQ9afwSIP.csv
+dataset/Maybank_Malaysia_OnlineMedia_07-Sep-2026_07-Oct-2026_hMxhx9QLTq.csv
+dataset/Maybank_Malaysia_OnlineMedia_07-Sep-2026_07-Oct-2026_i3BJEnT77K.csv
+
 use_cases/

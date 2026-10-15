@@ -8,11 +8,16 @@ import sys
 import os
 import pytest
 
-# Add src to path
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
+# Add project root and src to path
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SRC_DIR = os.path.join(PROJECT_ROOT, "src")
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
+if SRC_DIR not in sys.path:
+    sys.path.insert(0, SRC_DIR)
 
 from fastapi.testclient import TestClient
-from app import app, MAX_COMBINED_LENGTH
+from src.app import app, MAX_COMBINED_LENGTH
 
 client = TestClient(app)
 

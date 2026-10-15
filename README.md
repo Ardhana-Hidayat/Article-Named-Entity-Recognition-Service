@@ -73,31 +73,79 @@ cd UTS-Article-Named-Entity-Recognition-Service
 pip install -r requirements.txt
 ```
 
-### Langkah 2: Menjalankan Data Profiling
+### Langkah 2: Menyiapkan Dataset (Setup Dataset)
+
+Sesuai aturan kepatuhan repositori (*Hard Constraints* & `.gitignore`), file CSV mentah **tidak disertakan secara langsung** di dalam repository Git. Anda dapat menyiapkan dataset menggunakan salah satu dari 3 metode berikut:
+
+#### Opsi A: Meletakkan File CSV di Folder `dataset/` (Paling Mudah)
+1. Buat folder `dataset/` di root proyek (jika belum ada):
+   ```bash
+   mkdir dataset
+   ```
+2. Salin seluruh file CSV sampel artikel berita (misalnya file `Maybank_Malaysia_OnlineMedia_*.csv`) ke dalam folder `dataset/`:
+   ```
+   UTS-Article-Named-Entity-Recognition-Service/
+   └── dataset/
+       ├── Maybank_Malaysia_OnlineMedia_07-Sep-2026_07-Oct-2026_-nwub4cROX.csv
+       ├── Maybank_Malaysia_OnlineMedia_07-Sep-2026_07-Oct-2026_4sxH8Dz0hr.csv
+       ├── Maybank_Malaysia_OnlineMedia_07-Sep-2026_07-Oct-2026_58yzyiBQ9U.csv
+       └── ...
+   ```
+   > **Catatan**: Folder `dataset/` dan seluruh file `.csv` sudah otomatis terdaftar di `.gitignore` sehingga aman dan tidak akan ter-commit ke Git.
+
+#### Opsi B: Menggunakan Environment Variable `NER_DATA_DIR` (Tanpa Memindahkan File)
+Jika file dataset Anda tersimpan di direktori lain (misal di folder download atau repositori luar), Anda tidak perlu menyalin file tersebut. Cukup set variabel lingkungan `NER_DATA_DIR` ke path folder dataset Anda sebelum menjalankan skrip:
+- **Windows (PowerShell)**:
+  ```powershell
+  $env:NER_DATA_DIR = "D:\path\to\your\csv_folder"
+  ```
+- **Windows (CMD)**:
+  ```cmd
+  set NER_DATA_DIR=D:\path\to\your\csv_folder
+  ```
+- **Linux / macOS (Bash/Zsh)**:
+  ```bash
+  export NER_DATA_DIR="/path/to/your/csv_folder"
+  ```
+
+#### Opsi C: Menggunakan Struktur Bawaan Studi Kasus
+Pipeline kami secara otomatis mendeteksi direktori standar studi kasus jika tersedia:
+```
+use_cases/pnm_study_case/sample/*.csv
+```
+
+#### Verifikasi Setup Dataset:
+Untuk memastikan dataset berhasil terbaca dengan benar, jalankan inspeksi cepat:
+```bash
+python src/inspect_csv.py
+```
+Skrip akan menampilkan daftar file CSV yang ditemukan beserta jumlah baris dan kolom masing-masing file.
+
+### Langkah 3: Menjalankan Data Profiling
 ```bash
 python src/data_profiling.py
 ```
 *Output*: Menghasilkan profil dataset lengkap yang disimpan di `data/profiling_results.json`.
 
-### Langkah 3: Menjalankan Pipeline Anotasi & Data Splitting
+### Langkah 4: Menjalankan Pipeline Anotasi & Data Splitting
 ```bash
 python src/annotation_pipeline.py
 ```
 *Output*: Menghasilkan anotasi valid dan data split (70% train, 15% validation, 15% held-out test) di `data/annotations_*.jsonl`, set kurasi `data/evaluation_examples.json`, dan metadata di `data/split_metadata.json`.
 
-### Langkah 4: Menjalankan Training & Evaluasi Model
+### Langkah 5: Menjalankan Training & Evaluasi Model
 ```bash
 python src/train_ner.py
 ```
 *Output*: Melatih model NER selama hingga 30 epoch, mengevaluasi baseline vs model fine-tuned pada validation set dan test set, mencatat metrik per kelas, menjalankan *error analysis*, dan menyimpan model di `models/ner_finetuned/`.
 
-### Langkah 5: Menjalankan Automated Tests
+### Langkah 6: Menjalankan Automated Tests
 ```bash
 pytest tests/test_api.py -v
 ```
 *Output*: Menjalankan 22 unit & integration tests yang menguji seluruh skenario normal, edge-case, dan determinisme dengan status PASS 100%.
 
-### Langkah 6: Menjalankan Aplikasi Web & REST API
+### Langkah 7: Menjalankan Aplikasi Web & REST API
 ```bash
 python src/app.py
 ```
